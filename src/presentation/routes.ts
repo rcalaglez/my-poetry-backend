@@ -1,17 +1,11 @@
 import { Router } from "express";
+import { CategoryRoutes } from "./category/routes";
 
 export class AppRoutes {
-  /**
-   * Evitamos crear instancias de la clase
-   */
   static get routes(): Router {
     const router = Router();
 
-    /**
-     * Definimos todas las rutas principales
-     */
-
-    // router.use("/api/auth", AuthRoutes.routes);
+    router.use("/api/category", CategoryRoutes.routes);
 
     return router;
   }
