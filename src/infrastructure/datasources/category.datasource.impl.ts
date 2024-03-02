@@ -13,7 +13,8 @@ export class CategoryDatasourceImpl implements CategoryDataSource {
 
     try {
       const categoryExists = await CategoryModel.findOne({ name });
-      if (categoryExists) CustomError.badRequest("Category already exists");
+      if (categoryExists)
+        throw CustomError.badRequest("Category already exists");
 
       const category = await CategoryModel.create({
         name,
@@ -21,6 +22,8 @@ export class CategoryDatasourceImpl implements CategoryDataSource {
       });
 
       await category.save();
+
+      console.log(category);
 
       return CategoryMapper.entityFromObject(category);
     } catch (error) {

@@ -5,9 +5,11 @@ import { CustomError } from "../../domain/errors/custom.error";
 
 export class CategoryMapper {
   static entityFromObject(object: { [key: string]: any }) {
+    console.log("category", object);
+
     const { id, _id, name, type } = object;
 
-    if (!_id || !id) {
+    if (!_id && !id) {
       throw CustomError.badRequest("Missing id");
     }
 
