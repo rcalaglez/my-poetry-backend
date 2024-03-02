@@ -1,4 +1,4 @@
-import { CategoryType } from "../enums/categoryType.enum";
+import { CategoryType } from "../enums/category-type.enum";
 export class CategoryEntity {
   constructor(
     public id: string,

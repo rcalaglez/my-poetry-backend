@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { CategoryType } from "../../../domain/enums/categoryType.enum";
+import { CategoryType } from "../../../domain/enums/category-type.enum";
 
 const categorySchema = new Schema({
   name: {

@@ -1,5 +1,5 @@
-import { Validators } from "../../config";
-import { CategoryType } from "../enums/categoryType.enum";
+import { Validators } from "../../../config";
+import { CategoryType } from "../../enums/category-type.enum";
 
 export class CategoryDTO {
   private constructor(public name: string, public type?: CategoryType) {}
