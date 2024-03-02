@@ -5,6 +5,8 @@ export abstract class PoetryDataSource {
   abstract create(poetryDto: PoetryDTO): Promise<PoetryEntity>;
   abstract modify(poetryDto: PoetryDTO): Promise<PoetryEntity>;
 
+  abstract getAll(): Promise<PoetryEntity[]>;
+
   abstract like(poetryDto: PoetryDTO): Promise<PoetryEntity>;
-  abstract unlike(poetryDto: PoetryDTO): Promise<PoetryEntity>;
+  abstract unlike(poetryDto: PoetryDTO): Promise<PoetryEntity | string>;
 }

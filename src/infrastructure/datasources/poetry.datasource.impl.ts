@@ -7,14 +7,74 @@ import { PoetryMapper } from "../mappers/poetry.mapper";
 
 export class PoetryDataSourceImpl implements PoetryDataSource {
   constructor() {}
+  async getAll(): Promise<PoetryEntity[]> {
+    try {
+      return (await PoetryModel.find()).map((poetry) =>
+        PoetryMapper.entityFromObject(poetry)
+      );
+    } catch (error) {
+      if (error instanceof CustomError) throw error;
+      throw CustomError.internalServer();
+    }
+  }
   modify(poetryDto: PoetryDTO): Promise<PoetryEntity> {
     throw new Error("Method not implemented.");
   }
-  like(poetryDto: PoetryDTO): Promise<PoetryEntity> {
-    throw new Error("Method not implemented.");
+
+  async like(poetryDto: PoetryDTO): Promise<PoetryEntity> {
+    const { title, categoryName } = poetryDto;
+
+    try {
+      let category = await CategoryModel.findOne({
+        name: categoryName,
+      });
+
+      if (!category) {
+        throw CustomError.internalServer();
+      }
+
+      const poetry = await PoetryModel.findOne({ title, category });
+      if (!poetry) throw CustomError.internalServer();
+
+      poetry.likes++;
+
+      await poetry.save();
+
+      return PoetryMapper.entityFromObject(poetry);
+    } catch (error) {
+      if (error instanceof CustomError) throw error;
+      throw CustomError.internalServer();
+    }
   }
-  unlike(poetryDto: PoetryDTO): Promise<PoetryEntity> {
-    throw new Error("Method not implemented.");
+
+  async unlike(poetryDto: PoetryDTO): Promise<PoetryEntity | string> {
+    const { title, categoryName } = poetryDto;
+
+    try {
+      let category = await CategoryModel.findOne({
+        name: categoryName,
+      });
+
+      if (!category) {
+        throw CustomError.internalServer();
+      }
+
+      const poetry = await PoetryModel.findOne({ title, category });
+      if (!poetry) throw CustomError.internalServer();
+
+      if (poetry.likes === 0) {
+        return "No pueden haber menos de 0 likes";
+      }
+
+      poetry.likes--;
+
+      await poetry.save();
+
+      return PoetryMapper.entityFromObject(poetry);
+    } catch (error) {
+      if (error instanceof CustomError) throw error;
+      throw CustomError.internalServer();
+    }
   }
 
   async create(poetryDto: PoetryDTO): Promise<PoetryEntity> {

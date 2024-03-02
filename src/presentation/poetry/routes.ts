@@ -12,6 +12,9 @@ export class PoetryRoutes {
     const controller = new PoetryController(repository);
 
     router.post("/", controller.createPoetry);
+    router.get("/", controller.getAll);
+    router.put("/like", controller.like);
+    router.put("/unlike", controller.unlike);
 
     return router;
   }

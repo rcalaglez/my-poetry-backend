@@ -6,6 +6,7 @@ export class PoetryEntity {
     public title: string,
     public content: string,
     public category: CategoryEntity,
+    public likes: number,
     public img?: string
   ) {}
 }
