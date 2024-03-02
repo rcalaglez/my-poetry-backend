@@ -1,16 +1,17 @@
 import { Router } from "express";
 import { CategoryController } from "./controller";
-import { CreateCategory } from "../../domain/use-cases/category/create.use-case";
+import { CategoryDatasourceImpl } from "../../infrastructure/datasources/category.datasource.impl";
+import { CategoryRepositoryImpl } from "../../infrastructure/repositories/category.repository.impl";
 
 export class CategoryRoutes {
   static get routes(): Router {
     const router = Router();
 
-    /*     const database;
-    const repository;
-    const controller = new CategoryController()
+    const database = new CategoryDatasourceImpl();
+    const repository = new CategoryRepositoryImpl(database);
+    const controller = new CategoryController(repository);
 
-    router.post("/", controller.createCategory) */
+    router.post("/", controller.createCategory);
 
     return router;
   }

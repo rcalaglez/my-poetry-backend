@@ -8,7 +8,7 @@ interface CreateCategoryUseCase {
 export class CreateCategory implements CreateCategoryUseCase {
   constructor(private readonly categoryRepository: CategoryRepository) {}
 
-  execute(categoryDto: CategoryDTO): Promise<any> {
-    throw new Error("Method not implemented.");
+  async execute(categoryDto: CategoryDTO): Promise<any> {
+    return await this.categoryRepository.create(categoryDto);
   }
 }
