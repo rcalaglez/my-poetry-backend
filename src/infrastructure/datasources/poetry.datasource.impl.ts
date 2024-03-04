@@ -9,7 +9,7 @@ export class PoetryDataSourceImpl implements PoetryDataSource {
   constructor() {}
   async getAll(): Promise<PoetryEntity[]> {
     try {
-      return (await PoetryModel.find()).map((poetry) =>
+      return (await PoetryModel.find().populate('category')).map((poetry) =>
         PoetryMapper.entityFromObject(poetry)
       );
     } catch (error) {
