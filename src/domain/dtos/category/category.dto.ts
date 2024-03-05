@@ -1,4 +1,4 @@
-import { Validators } from "../../../config";
+import { Validators } from "../../../config/validators";
 import { CategoryType } from "../../enums/category-type.enum";
 
 export class CategoryDTO {

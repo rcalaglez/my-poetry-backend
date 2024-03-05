@@ -1,4 +1,4 @@
-import { CategoryModel, PoetryModel } from "../../data/mongodb";
+import { CategoryModel, PoetryModel } from "../../data/mongodb/index";
 import { PoetryDataSource } from "../../domain/datasources/poetry.datasource";
 import { PoetryDTO } from "../../domain/dtos/poetry/poetry.dto";
 import { PoetryEntity } from "../../domain/entities/poetry.entity";
@@ -9,8 +9,9 @@ export class PoetryDataSourceImpl implements PoetryDataSource {
   constructor() {}
   async getAll(): Promise<PoetryEntity[]> {
     try {
-      return (await PoetryModel.find().populate('category')).map((poetry) =>
-        PoetryMapper.entityFromObject(poetry)
+      return (await PoetryModel.find().populate("category")).map(
+        (poetry: { [key: string]: any }) =>
+          PoetryMapper.entityFromObject(poetry)
       );
     } catch (error) {
       if (error instanceof CustomError) throw error;

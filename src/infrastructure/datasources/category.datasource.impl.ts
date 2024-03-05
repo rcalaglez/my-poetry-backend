@@ -1,4 +1,4 @@
-import { CategoryModel } from "../../data/mongodb";
+import { CategoryModel } from "../../data/mongodb/index";
 import { CategoryDataSource } from "../../domain/datasources/category.datasource";
 import { CategoryDTO } from "../../domain/dtos/category/category.dto";
 import { CategoryEntity } from "../../domain/entities/category.entity";

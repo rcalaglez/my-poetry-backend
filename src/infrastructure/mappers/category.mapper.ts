@@ -1,4 +1,4 @@
-import { Validators } from "../../config";
+import { Validators } from "../../config/validators";
 import { CategoryEntity } from "../../domain/entities/category.entity";
 import { CategoryType } from "../../domain/enums/category-type.enum";
 import { CustomError } from "../../domain/errors/custom.error";

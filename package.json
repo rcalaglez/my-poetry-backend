@@ -1,7 +1,7 @@
 {
   "name": "my-poetry-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/app.js",
   "scripts": {
     "build": "rimraf ./dist && tsc",
     "dev": "tsnd --respawn --clear src/app.ts",
